@@ -1,4 +1,4 @@
-module github.com/PacktPublishing/GO-Cookbook-Top-Techniques/src
+module github.com/PacktPublishing/Go-Recipes-for-Developers/src
 
 go 1.22.1
 

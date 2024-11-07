@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/PacktPublishing/GO-Cookbook-Top-Techniques/src/chp15/sort/service"
+	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp15/sort/service"
 )
 
 func main() {
