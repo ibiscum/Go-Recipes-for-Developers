@@ -1,2 +1,2 @@
-# GO-Cookbook-Top-Techniques
-GO Cookbook: Top Techniques, published by Packt
+# GO-Recipes-for-Developers
+GO Recipes for Developers, published by Packt
