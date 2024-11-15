@@ -4,6 +4,7 @@ go 1.22.1
 
 require (
 	github.com/gorilla/mux v1.8.1
+	golang.org/x/exp v0.0.0-20231108232855-2478ac86f678
 	modernc.org/sqlite v1.33.1
 )
 
