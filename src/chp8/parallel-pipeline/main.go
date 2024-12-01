@@ -148,8 +148,9 @@ func Stage3(input <-chan Stage3Payload, errCh chan<- error, nInstances int) <-ch
 func main() {
 	errCh := make(chan error)
 	inputCh := make(chan InputPayload)
+	nInstances := 5
 	// Prepare the pipeline by attaching stages
-	outputCh := Stage3(Stage2(Stage1(inputCh, errCh, 5), errCh, 5), errCh, 5)
+	outputCh := Stage3(Stage2(Stage1(inputCh, errCh, nInstances), errCh, nInstances), errCh, nInstances)
 
 	// Feed input asynchronously
 	go func() {

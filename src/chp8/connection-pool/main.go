@@ -39,6 +39,13 @@ type ConnectionPool struct {
 	total     chan struct{}
 }
 
+func NewConnectionPool(poolSize int) *ConnectionPool {
+	return &ConnectionPool{
+		available: make(chan net.Conn, poolSize),
+		total:     make(chan struct{}, poolSize),
+	}
+}
+
 func (pool *ConnectionPool) GetConnection() (net.Conn, error) {
 	select {
 	// If there are connections available in the pool, return one
@@ -81,10 +88,7 @@ const PoolSize = 10
 func main() {
 	go server()
 
-	pool := ConnectionPool{
-		available: make(chan net.Conn, PoolSize),
-		total:     make(chan struct{}, PoolSize),
-	}
+	pool := NewConnectionPool(PoolSize)
 
 	wg := sync.WaitGroup{}
 	for i := 0; i < 100; i++ {
