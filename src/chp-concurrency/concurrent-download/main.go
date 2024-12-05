@@ -10,7 +10,10 @@ import (
 )
 
 // This example demostrates managing multiple independent
-// goroutines. Each goroutine downloads a file over HTTP and stores it.
+// goroutines. A wait group is used to wait for all goroutines to
+// end. Each goroutine downloads a file and stores it in the file
+// system. There are no dependencies or communications between
+// goroutines.
 func main() {
 	urls := []string{
 		"https://pkg.go.dev/bufio",
