@@ -80,7 +80,7 @@ func main() {
 	file.Close()
 
 	// Truncate open file
-	file, err = os.OpenFile("test.txt", os.O_RDONLY|os.O_TRUNC, 0o644)
+	file, err = os.OpenFile("test.txt", os.O_RDWR|os.O_TRUNC, 0o644)
 	if err != nil {
 		panic(err)
 	}
