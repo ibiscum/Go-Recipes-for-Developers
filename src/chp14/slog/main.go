@@ -25,7 +25,7 @@ func LoggingWithLevels() {
 
 func ChangingLogLevel() {
 
-	level := &slog.LevelVar{}
+	level := new(slog.LevelVar)
 	level.Set(slog.LevelDebug)
 	logger := slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
 		Level: level,
