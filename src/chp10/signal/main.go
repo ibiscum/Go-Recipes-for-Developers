@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 func main() {
@@ -22,7 +23,10 @@ func main() {
 	signal.Notify(sigTerm, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
 		<-sigTerm
-		server.Shutdown(context.Background())
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.
+			Second)
+		defer cancel()
+		server.Shutdown(ctx)
 	}()
 
 	server.ListenAndServe()
