@@ -6,11 +6,11 @@ import (
 	"net"
 )
 
-var address = flag.String("a", "localhost:8008", "Server address")
+var serverAddress = flag.String("a", "localhost:8008", "Server address")
 
 func main() {
 	flag.Parse()
-	addr, err := net.ResolveUDPAddr("udp4", *address)
+	addr, err := net.ResolveUDPAddr("udp4", *serverAddress)
 	if err != nil {
 		panic(err)
 	}

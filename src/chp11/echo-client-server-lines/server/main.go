@@ -26,14 +26,19 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		go handleConnection(conn)
+		go func() {
+			err := handleConnection(conn)
+			if err != nil {
+				fmt.Println(err)
+			}
+		}()
 	}
 }
 
 // Limit line length to 1K.
 const MaxLineLength = 1024
 
-func handleConnection(conn net.Conn) {
+func handleConnection(conn net.Conn) error {
 	defer conn.Close()
 	// Wrap the connection with a limited reader
 	// to prevent the client from sending unbounded
@@ -48,25 +53,22 @@ func handleConnection(conn net.Conn) {
 		if err != nil {
 			if err != io.EOF {
 				// Some error other than end-of-stream
-				fmt.Println(err)
-				return
+				return err
 			}
 			// End of stream. It could be because the line is too long
 			if limiter.N == 0 {
 				// Line was too long
-				fmt.Println("Received a line that is too long")
-				return
+				return fmt.Errorf("Received a line that is too long")
 			}
 			// End of stream
-			return
+			return nil
 		}
 		// Reset the limiter, so the next line can be read with
 		// newlimit
 		limiter.N = MaxLineLength + 1
 		// Process the line
 		if _, err := conn.Write(bytes); err != nil {
-			fmt.Println(err)
-			return
+			return err
 		}
 	}
 }

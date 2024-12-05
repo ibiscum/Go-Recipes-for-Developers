@@ -59,9 +59,10 @@ func handleConnection(conn net.Conn) {
 		fmt.Println(err)
 		return
 	}
+	path := filepath.Join("downloads", string(name))
 	// Create the file
 	file, err := os.OpenFile(
-		filepath.Join("downloads", string(name)),
+		path,
 		os.O_CREATE|os.O_WRONLY,
 		os.FileMode(meta.Mode),
 	)
@@ -73,6 +74,7 @@ func handleConnection(conn net.Conn) {
 	// Copy the file contents
 	_, err = io.CopyN(file, conn, int64(meta.Size))
 	if err != nil {
+		os.Remove(path)
 		fmt.Println(err)
 		return
 	}
