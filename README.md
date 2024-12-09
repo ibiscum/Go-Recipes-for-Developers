@@ -23,7 +23,9 @@ If you feel this book is for you, get your [copy](https://a.co/d/hxca2hS) today!
 
 ## Instructions and Navigations
 
-All of the code is organized into folders. For example, Chap2.
+Some code may appear slightly different between the Chapter and the Repository. While the functionality remains the same, the code is not exactly identical. For example, in Chapter 5: in one instance, it is referred to as 'Package Auth' in the Chapter, whereas it is 'Package Main' in the Repository to ensure the code is executable.
+
+All of the code is organized into folders. For example, Chp2.
 
 The code will look like the following:
 
