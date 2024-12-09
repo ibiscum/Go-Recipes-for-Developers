@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp15/sort/sort"
+	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp17/sort/sorting"
 )
 
 func HandleSort(w http.ResponseWriter, req *http.Request, ascending bool) {
@@ -20,7 +20,7 @@ func HandleSort(w http.ResponseWriter, req *http.Request, ascending bool) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	output := sort.SortTimes(input, ascending)
+	output := sorting.SortTimes(input, ascending)
 	data, err = json.Marshal(output)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
