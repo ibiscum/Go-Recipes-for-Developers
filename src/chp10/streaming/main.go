@@ -77,7 +77,7 @@ func ProcessResult(result Result) error {
 }
 
 func main() {
-	db, err := sql.Open("sqlite", "chp8.db")
+	db, err := sql.Open("sqlite", "chp10.db")
 	if err != nil {
 		panic(err)
 	}
