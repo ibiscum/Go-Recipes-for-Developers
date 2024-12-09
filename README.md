@@ -1,6 +1,6 @@
 # Go Recipes for Developers
 
-<a href="https://www.packtpub.com/en-us/product/go-recipes-for-developers-9781835464786"> <img src="	https://content.packt.com/_/image/xxlarge/B21961/cover_image.jpg" alt="Go Recipes for Developers" itemprop="url" height="256px" align="right">
+<a href="https://www.packtpub.com/en-us/product/go-recipes-for-developers-9781835464786"> <img src="https://content.packt.com/_/image/xxlarge/B21961/cover_image.jpg" alt="Go Recipes for Developers" itemprop="url" height="256px" align="right">
 
 This is the code repository for [Go Recipes for Developrs](https://www.packtpub.com/en-us/product/go-recipes-for-developers-9781835464786), published by Packt.
 
