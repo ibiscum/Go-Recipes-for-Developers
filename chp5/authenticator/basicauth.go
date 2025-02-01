@@ -81,7 +81,7 @@ func (session BasicAuthSession) UserID() string {
 
 // Close closes the session
 func (session BasicAuthSession) Close() {
-	session.open = false
+	// session.open = false
 }
 
 type BasicAuthFactory struct{}

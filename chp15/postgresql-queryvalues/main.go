@@ -51,12 +51,15 @@ func main() {
 	}
 	defer db.Close()
 	// You don't need to ping an embedded database
-	db.Exec(`CREATE TABLE user_info (
-user_id int not null,
-user_name varchar(32) not null,
-last_login timestamp null,
-avatar_url varchar(128) null
-)`)
+	_, err = db.Exec(`CREATE TABLE user_info (
+	user_id int not null,
+	user_name varchar(32) not null,
+	last_login timestamp null,
+	avatar_url varchar(128) null
+	)`)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	{
 		// Add some users to the database

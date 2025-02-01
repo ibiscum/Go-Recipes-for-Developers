@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"log"
 )
 
 type Data struct {
@@ -41,19 +42,31 @@ func main() {
 		BoolValue:  true,
 		ArrayValue: [2]int64{1, 2},
 	}
-	binary.Write(&output, binary.BigEndian, data)
+	err := binary.Write(&output, binary.BigEndian, data)
+	if err != nil {
+		log.Fatal(err)
+	}
 	stream := output.Bytes()
 	fmt.Printf("Big endian encoded data   : %v\n", stream)
 	var value1 Data
-	binary.Read(bytes.NewReader(stream), binary.BigEndian, &value1)
+	err = binary.Read(bytes.NewReader(stream), binary.BigEndian, &value1)
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("Decoded data: %v\n", value1)
 
 	output = bytes.Buffer{}
-	binary.Write(&output, binary.LittleEndian, data)
+	err = binary.Write(&output, binary.LittleEndian, data)
+	if err != nil {
+		log.Fatal(err)
+	}
 	stream = output.Bytes()
 	fmt.Printf("Little endian encoded data: %v\n", stream)
 	var value2 Data
-	binary.Read(bytes.NewReader(stream), binary.LittleEndian, &value2)
+	err = binary.Read(bytes.NewReader(stream), binary.LittleEndian, &value2)
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("Decoded data: %v\n", value2)
 
 	encodedString := EncodeString("Hello world!")

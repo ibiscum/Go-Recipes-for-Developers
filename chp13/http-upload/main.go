@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -70,7 +71,10 @@ func handleUpload(w http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
-	os.Mkdir("uploads", 0o775)
+	err := os.Mkdir("uploads", 0o775)
+	if err != nil {
+		log.Fatal(err)
+	}
 	mux := http.NewServeMux()
 	mux.HandleFunc("POST /upload", handleUpload)
 	mux.HandleFunc("GET /upload.html", func(w http.ResponseWriter, _ *http.Request) {

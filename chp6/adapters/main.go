@@ -55,8 +55,7 @@ func Must[T any](value T, err error) T {
 }
 
 func main() {
-	var x *int
-	x = ToPtr(1)
+	var x *int = ToPtr(1)
 	fmt.Println("x = ToPtr(1)", x, *x)
 	fmt.Println("ToSlice(1)", ToSlice(1))
 	fmt.Println("ToSlice(str)", ToSlice("str"))

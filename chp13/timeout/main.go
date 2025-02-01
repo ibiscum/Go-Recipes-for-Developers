@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 	"time"
@@ -60,8 +61,11 @@ func main() {
 func handleConnectionWithTimeout(conn net.Conn) {
 	for {
 		// Set a 1 second read timeout
-		conn.SetReadDeadline(time.Now().Add(time.Second))
-		_, err := io.Copy(conn, conn)
+		err := conn.SetReadDeadline(time.Now().Add(time.Second))
+		if err != nil {
+			log.Fatal(err)
+		}
+		_, err = io.Copy(conn, conn)
 		if err != nil {
 			if errors.Is(err, os.ErrDeadlineExceeded) {
 				fmt.Println("Read timeout, restarting")

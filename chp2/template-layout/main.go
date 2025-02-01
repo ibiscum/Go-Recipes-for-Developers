@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"os"
 )
 
@@ -53,6 +54,13 @@ func main() {
 
 	secondPageTmpl := template.Must(template.New("body").Parse(layout))
 	template.Must(secondPageTmpl.Parse(secondPage))
-	mainPageTmpl.Execute(os.Stdout, nil)
-	secondPageTmpl.Execute(os.Stdout, nil)
+	err := mainPageTmpl.Execute(os.Stdout, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = secondPageTmpl.Execute(os.Stdout, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
