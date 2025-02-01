@@ -3,7 +3,6 @@ module github.com/ibiscum/Go-Recipes-for-Developers
 go 1.23.1
 
 require (
-	github.com/ibiscum/Go-Recipes-for-Developers/src v0.0.0-20250107042203-209221934d10
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/mux v1.8.1

@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ibiscum/Go-Recipes-for-Developers/src/chp17/sorting/service"
+	"github.com/ibiscum/Go-Recipes-for-Developers/chp17/sorting/service"
 )
 
 func main() {
