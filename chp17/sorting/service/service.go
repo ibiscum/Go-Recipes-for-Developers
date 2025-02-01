@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp17/sorting/sort"
+	sorting "github.com/ibiscum/1Go-Recipes-for-Developers/chp17/sorting/sort"
 )
 
 func HandleSort(w http.ResponseWriter, req *http.Request, ascending bool) {

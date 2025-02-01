@@ -7,8 +7,8 @@ import (
 	"github.com/gorilla/mux"
 	_ "modernc.org/sqlite"
 
-	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp1/webform/internal/routes"
-	"github.com/PacktPublishing/Go-Recipes-for-Developers/src/chp1/webform/pkg/commentdb"
+	"github.com/ibiscum/Go-Recipes-for-Developers/src/chp1/webform/internal/routes"
+	"github.com/ibiscum/Go-Recipes-for-Developers/src/chp1/webform/pkg/commentdb"
 )
 
 func main() {
