@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"html"
 	"io"
 	"log"
 	"net/http"
@@ -14,7 +15,15 @@ import (
 func main() {
 	// Create a simple HTTP echo service
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		io.Copy(w, r.Body)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "failed to read request body", http.StatusBadRequest)
+			return
+		}
+		defer r.Body.Close()
+		escaped := html.EscapeString(string(body))
+		io.WriteString(w, escaped)
 	})
 	server := &http.Server{Addr: ":8080"}
 
