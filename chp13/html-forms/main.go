@@ -34,6 +34,7 @@ func (Authenticator) Authenticate(name, password string) (*http.Cookie, error) {
 			Value:  name,
 			MaxAge: 3600,
 			Path:   "/",
+			Secure: true,
 		}, nil
 	}
 	return nil, errors.New("Unknown user")
@@ -78,6 +79,7 @@ func (h UserHandler) ShowLoginPage(w http.ResponseWriter, req *http.Request) {
 		http.SetCookie(w, &http.Cookie{
 			Name:   "error_cookie",
 			MaxAge: 0,
+			Secure: true,
 		})
 	}
 	w.Header().Set("Content-Type", "text/html")
@@ -95,6 +97,7 @@ func (h UserHandler) NewErrorCookie(msg string) *http.Cookie {
 		Value:  msg,
 		MaxAge: 60, // Cookie lives for 60 seconds
 		Path:   "/",
+		Secure: true,
 	}
 }
 
