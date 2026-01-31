@@ -5,6 +5,7 @@ import (
 	"flag"
 	"io"
 	"net/http"
+	"html"
 )
 
 var (
@@ -16,7 +17,14 @@ var (
 type echoHandler struct{}
 
 func (echoHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	io.Copy(w, req.Body)
+	w.Header().Set("Content-Type", "text/plain") // Explicitly set content type
+	body, err := io.ReadAll(req.Body)
+	if err != nil {
+		http.Error(w, "Failed to read request body", http.StatusInternalServerError)
+		return
+	}
+	escapedBody := html.EscapeString(string(body)) // Escape user-provided input
+	w.Write([]byte(escapedBody))
 }
 
 func main() {
