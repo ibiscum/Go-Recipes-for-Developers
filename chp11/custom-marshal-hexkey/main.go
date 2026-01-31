@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -10,9 +11,12 @@ import (
 type Key uint
 
 func (k *Key) UnmarshalText(data []byte) error {
-	v, err := strconv.ParseInt(string(data), 16, 64)
+	v, err := strconv.ParseUint(string(data), 16, 64)
 	if err != nil {
 		return err
+	}
+	if v > math.MaxUint {
+		return fmt.Errorf("key out of range: %d", v)
 	}
 	*k = Key(v)
 	return nil
