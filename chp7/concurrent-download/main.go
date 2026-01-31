@@ -6,8 +6,12 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"path/filepath"
+	"strings"
 	"sync"
 )
+
+const downloadDir = "downloads"
 
 // This example demostrates managing multiple independent
 // goroutines. A wait group is used to wait for all goroutines to
@@ -50,9 +54,20 @@ func main() {
 				return
 			}
 			fname := path.Base(rsp.Request.URL.Path)
-			file, err := os.Create(fname)
+			// Ensure the derived filename does not contain path separators or parent directory references.
+			if strings.Contains(fname, "/") || strings.Contains(fname, "\\") || strings.Contains(fname, "..") || fname == "" {
+				log.Printf("Refusing to use unsafe filename %q for URL %s", fname, downloadURL)
+				return
+			}
+			// Ensure the download directory exists and write files into it.
+			if err := os.MkdirAll(downloadDir, 0o755); err != nil {
+				log.Printf("Cannot create download directory %s: %s", downloadDir, err)
+				return
+			}
+			fullPath := filepath.Join(downloadDir, fname)
+			file, err := os.Create(fullPath)
 			if err != nil {
-				log.Printf("Cannot write file %s: %s", fname, err)
+				log.Printf("Cannot write file %s: %s", fullPath, err)
 				return
 			}
 			defer file.Close()
