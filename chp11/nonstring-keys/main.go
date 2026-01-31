@@ -10,7 +10,7 @@ import (
 type Key uint
 
 func (k *Key) UnmarshalText(data []byte) error {
-	v, err := strconv.ParseInt(string(data), 16, 64)
+	v, err := strconv.ParseUint(string(data), 16, 0)
 	if err != nil {
 		return err
 	}
