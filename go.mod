@@ -8,7 +8,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/jackc/pgx/v5 v5.8.0
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546
-	golang.org/x/text v0.33.0
+	golang.org/x/text v0.34.0
 	modernc.org/sqlite v1.46.1
 )
 
