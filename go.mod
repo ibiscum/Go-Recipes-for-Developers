@@ -9,7 +9,7 @@ require (
 	github.com/jackc/pgx/v5 v5.7.2
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546
 	golang.org/x/text v0.33.0
-	modernc.org/sqlite v1.44.3
+	modernc.org/sqlite v1.46.1
 )
 
 require (
